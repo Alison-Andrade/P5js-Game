@@ -78,8 +78,6 @@ class Player{
         fill(255);
         textFont('verdana');
         text(this.ui, 20, 25);
-
-        // console.log(this.vidas);
     }
 }
 

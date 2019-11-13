@@ -64,6 +64,7 @@ function draw(){
         }
     }
     if(estado == 1) {
+        cursor('default');
         game.start();
         fill(255);
         textSize(25);
@@ -77,5 +78,8 @@ function draw(){
         }else{
             cursor('default');
         }
+    }
+    if (estado == 3) {
+        menu.record = jogador.pontos;
     }
 }
