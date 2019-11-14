@@ -1,10 +1,12 @@
 estado = 0;
 playerRunAnime = [];
+recorde = 0;
 
 function preload(){
     bgImage = loadImage("../img/street.jpg");
     fonte = loadFont("../img/Pixelmania.ttf");
     backImg = loadImage("../img/back.png");
+    restartImg = loadImage("../img/reset.png")
     
     obstaculoImg = loadImage("../img/obstaculo.png");
 
@@ -17,6 +19,9 @@ function preload(){
         // img = loadImage("images/jump/Jump__"+a[i]+".png");
         // playerJumpAnime.push(img);
     }
+
+    jumpSound = loadSound("../sound/jump.mp3");
+    music = loadSound("../sound/music.ogg");
     
 }
 
@@ -34,11 +39,22 @@ function mouseClicked(){
             estado = 0;
         }
     }
+    if (estado == 4) {
+        if (mouseX > 266 && mouseX < 325 && mouseY > 300 && mouseY < 360) {
+            estado = 1;
+        }
+        if (mouseX > 414 && mouseX < 475 && mouseY > 300 && mouseY < 360) {
+            estado = 0;
+        }
+    }
 }
 
 function keyPressed() {
-    if (key == ' ' || keyCode == 38) {
-        game.jogador.pular();
+    if (estado == 1) {
+        if (key == ' ' || keyCode == 38) {
+            jumpSound.play();
+            game.jogador.pular();
+        }
     }
 }
 
@@ -46,14 +62,17 @@ function setup(){
     createCanvas(700, 400);
     menu = new Menu();
     game = new Game();
+    music.play();
 }
 
 function update(){
-    
 }
 
 function draw(){
-    clear();
+    // clear();
+    // console.log(mouseX, mouseY);
+    
+    menu.txtRecorde = "RECORDE: " + recorde;
     if (estado == 0) {
         menu.show();
 
@@ -62,6 +81,7 @@ function draw(){
         }else{
             cursor('default');
         }
+
     }
     if(estado == 1) {
         cursor('default');
@@ -80,6 +100,21 @@ function draw(){
         }
     }
     if (estado == 3) {
-        menu.record = jogador.pontos;
+        if(game.jogador.pontos > recorde){
+            recorde = floor(game.jogador.pontos);
+            textSize(25);
+            fill(255, 150, 100);
+            text("Novo recorde :D", 270, 250);
+        }
+        estado = 4;
+    }
+    if (estado == 4) {
+        game = new Game();
+
+        if ((mouseX > 266 && mouseX < 325 || mouseX > 414 && mouseX < 475) && mouseY > 300 && mouseY < 360) {
+            cursor('pointer');
+        }else{
+            cursor('default');
+        }
     }
 }

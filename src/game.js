@@ -26,8 +26,16 @@ class Game{
         if (this.jogador.estaVivo()) {
             this.bgControll();
 
-            if(random(1) < 0.01){
-                this.obstaculos.push(new Obstaculo());
+            if(random(1) < 0.02){
+                if(this.obstaculos.length < 1){
+                    this.obstaculos.push(new Obstaculo(this.scrollBg));
+                }else if (this.obstaculos[this.obstaculos.length-1].pos.x < 470) {
+                    this.obstaculos.push(new Obstaculo(this.scrollBg));
+                    this.scrollBg += 0.2;
+                    for (let o of this.obstaculos) {
+                        o.velocidade += 0.2;
+                    }
+                }
             }
     
             for (let o of this.obstaculos) {
@@ -40,16 +48,31 @@ class Game{
             
             this.jogador.mover();
             this.jogador.draw();
+        }else{
+            this.gameOver()
         }
+    }
+
+    gameOver(){
+        
+        estado = 3;
+        textSize(50);
+        text("GAME OVER", width/4+30, height/2);
+
+        // fill(222);
+        // rectMode(CORNER)
+        // rect(415, 300, 60, 60);
+        // rect(265, 300, 60, 60);
+        image(backImg, 420, 300, 50, 60);
+        image(restartImg, 260, 300, 70, 60);
     }
 }
 
 class Menu{
     constructor(){
-        this.recorde = 0;
         this.nomeJogo = "STREET\n     RUN";
         
-        this.txtRecorde = "RECORDE: " + this.recorde;
+        this.txtRecorde = "RECORDE: " + recorde;
     }
 
     btnIniciar(){
@@ -76,7 +99,7 @@ class Menu{
         image(bgImage, 0, 0, width, height);
         fill(255);
         textSize(15);
-        text(this.txtRecorde, width-220, 25);
+        text(this.txtRecorde, width-260, 25);
 
         textFont(fonte);
         textSize(30);
@@ -94,6 +117,7 @@ class Menu{
         textSize(15);
         text("POR:", 100, 120);
         text("DAVYSON", 150, 170);
+        text("LUCAS", 150, 200);
 
         // fill(222);
         // rect(315, 297, 60, 65);

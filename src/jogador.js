@@ -63,6 +63,7 @@ class Player{
     draw(){
         
         noFill();
+        noStroke();
         ellipseMode(CENTER);
         let e = ellipse(this.pos.x, this.pos.y-((this.tamanho/2)-15), this.tamanho, this.tamanho*2);
 
