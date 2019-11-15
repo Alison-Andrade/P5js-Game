@@ -31,9 +31,9 @@ class Game{
                     this.obstaculos.push(new Obstaculo(this.scrollBg));
                 }else if (this.obstaculos[this.obstaculos.length-1].pos.x < 470) {
                     this.obstaculos.push(new Obstaculo(this.scrollBg));
-                    this.scrollBg += 0.2;
+                    this.scrollBg += 0.15;
                     for (let o of this.obstaculos) {
-                        o.velocidade += 0.2;
+                        o.velocidade += 0.15;
                     }
                 }
             }
