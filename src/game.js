@@ -116,8 +116,8 @@ class Menu{
         fill(255);
         textSize(15);
         text("POR:", 100, 120);
-        text("DAVYSON", 150, 170);
-        text("LUCAS", 150, 200);
+        text("DAVYSON MAXIMIANO", 150, 170);
+        text("LUCAS SALDANHA", 150, 200);
 
         // fill(222);
         // rect(315, 297, 60, 65);

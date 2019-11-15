@@ -15,9 +15,6 @@ function preload(){
     for (let i = 0; i < a.length; i++) {
         let img = loadImage("../img/run/Run__"+a[i]+".png");
         playerRunAnime.push(img);
-
-        // img = loadImage("images/jump/Jump__"+a[i]+".png");
-        // playerJumpAnime.push(img);
     }
 
     jumpSound = loadSound("../sound/jump.mp3");
@@ -69,9 +66,6 @@ function update(){
 }
 
 function draw(){
-    // clear();
-    // console.log(mouseX, mouseY);
-    
     menu.txtRecorde = "RECORDE: " + recorde;
     if (estado == 0) {
         menu.show();
